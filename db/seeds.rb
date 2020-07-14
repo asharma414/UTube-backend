@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Comment.destroy_all
+Genre.destroy_all
+User.destroy_all
+Video.destroy_all
+View.destroy_all
+
+entertainment = Genre.create(name: 'Entertainment')
+education = Genre.create(name: 'Education')
+comedy = Genre.create(name: 'Comedy')
+
+abhi = User.create(first_name: 'Abhinav', last_name: 'Sharma', country: 'United States', username: 'asharma414')
+
+vid = Video.create(title: 'test', description: 'test description', user_id: abhi.id, public: true)
+
+vid.clip.attach(io: File.open('/Users/abhi/Development/code/Mod5/mod5-project/utube-backend/public/assets/test.mp4'), filename: 'test.mp4')
