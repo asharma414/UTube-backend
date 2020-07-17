@@ -41,3 +41,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'active_model_serializers'
+
+# Use ActiveModel has_secure_password
+gem 'bcrypt', '~> 3.1.7'
+gem "jwt", "~> 2.1"
