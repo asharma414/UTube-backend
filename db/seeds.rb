@@ -16,7 +16,7 @@ entertainment = Genre.create(name: 'Entertainment')
 education = Genre.create(name: 'Education')
 comedy = Genre.create(name: 'Comedy')
 
-abhi = User.create(first_name: 'Abhinav', last_name: 'Sharma', country: 'United States', username: 'asharma414', password: 'test123')
+abhi = User.create(first_name: 'Abhinav', last_name: 'Sharma', country: 'United States', username: 'asharma414', password: 'test123', dob: "1997-01-27")
 
 vid = Video.create(title: 'test', description: 'test description', user_id: abhi.id, public: true)
 

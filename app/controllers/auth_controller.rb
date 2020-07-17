@@ -1,6 +1,6 @@
 class AuthController < ApplicationController
 
-  def create # POST /api/v1/login
+  def create # POST /login
     user = User.find_by(username: params["username"])
     if( user && user.authenticate(params["password"]) )
       #if the username AND passworld was found
@@ -11,7 +11,7 @@ class AuthController < ApplicationController
         token: token
       }
     else
-      #if either the username OR password is inccorect
+      #if either the username OR password is incorrect
       render json: {
         error: true,
         message: "Incorrect username or password!"
