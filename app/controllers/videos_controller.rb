@@ -15,7 +15,6 @@ class VideosController < ApplicationController
   # POST /videos
   def create
     @video = Video.new(video_params)
-
     if @video.save
       render json: @video, status: :created, location: @video
     else

@@ -1,7 +1,7 @@
 class VideoSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :title, :description, :public, :user_id, :clip
+  attributes :id, :title, :description, :public, :user_id, :clip, :thumbnail, :user, :duration
 
     def clip
     return unless object.clip.attached?
@@ -14,6 +14,23 @@ class VideoSerializer < ActiveModel::Serializer
 
   def clip_url
     url_for(object.clip)
+  end
+
+    def thumbnail
+    return unless object.thumbnail.attached?
+
+    object.generate_thumbnail.blob.attributes
+          .slice('filename', 'byte_size')
+          .merge(url: thumbnail_url)
+          .tap { |attrs| attrs['name'] = attrs.delete('filename') }
+  end
+
+  def thumbnail_url
+    url_for(object.generate_thumbnail)
+  end
+
+  def user
+    object.user.as_json(only: [:username])
   end
 
 end
