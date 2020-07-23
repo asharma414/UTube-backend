@@ -3,7 +3,7 @@ class VideosController < ApplicationController
 
   # GET /videos
   def index
-    @videos = Video.all
+    @videos = Video.where(public: true)
     render json: @videos
   end
 
@@ -44,6 +44,6 @@ class VideosController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def video_params
-      params.require(:video).permit(:title, :description, :public, :user_id, :clip, :thumbnail)
+      params.require(:video).permit(:title, :description, :public, :user_id, :clip, :thumbnail, :genre_id)
     end
 end
