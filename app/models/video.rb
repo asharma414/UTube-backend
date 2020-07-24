@@ -2,6 +2,7 @@ class Video < ApplicationRecord
     has_one_attached :clip
     has_one_attached :thumbnail
     has_many :views
+    has_many :likes
     has_many :comments
     belongs_to :user
     belongs_to :genre
@@ -12,6 +13,14 @@ class Video < ApplicationRecord
 
     def generate_thumbnail
         return self.thumbnail.variant(resize: '250x250!').processed
+    end
+
+    def like_count
+        self.likes.where(dislike: false).count
+    end
+
+    def dislike_count
+        self.likes.where(dislike: true).count
     end
 
     def duration

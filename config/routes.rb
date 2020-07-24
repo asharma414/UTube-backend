@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  resources :subscriptions
+  resources :likes, only: [:create, :destroy]
+  resources :subscriptions, only: [:create, :destroy]
   resources :genres
   resources :videos
   resources :users
   post '/login', to: 'auth#create'
   get  '/token', to: 'auth#token_log_in'
+  get '/feed/subscriptions', to: "feed#subscriptions"
+  get '/feed/liked', to: 'feed#liked'
+  get '/feed/viewed', to: 'feed#viewed'
+  get '/likes/:id', to: 'likes#liked'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

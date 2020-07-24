@@ -3,10 +3,8 @@ class SubscriptionsController < ApplicationController
 
   # POST /subscriptions
   def create
-    token = decode(request.headers["Authentication"])
-    user_id = token["user_id"]
     @subscription = Subscription.new(subscription_params)
-    @subscription['subscriber_id'] = user_id
+    @subscription['subscriber_id'] = current_user.id
     if @subscription.save
       render json: @subscription, status: :created, location: @subscription
     else
@@ -23,9 +21,7 @@ class SubscriptionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription
-      token = decode(request.headers["Authentication"])
-      user_id = token["user_id"]
-      @subscription = Subscription.find_by(subscribee_id: params[:id], subscriber_id: user_id)
+      @subscription = Subscription.find_by(subscribee_id: params[:id], subscriber_id: curr_user.id)
     end
 
     # Only allow a trusted parameter "white list" through.

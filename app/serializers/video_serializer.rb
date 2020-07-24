@@ -1,7 +1,7 @@
 class VideoSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :title, :description, :public, :user_id, :clip, :thumbnail, :user, :duration, :genre
+  attributes :id, :title, :description, :public, :user_id, :clip, :thumbnail, :user, :duration, :genre, :like_count, :dislike_count
 
   def clip
     return unless object.clip.attached?
@@ -28,7 +28,7 @@ class VideoSerializer < ActiveModel::Serializer
   end
 
   def user
-   user = { username: object.user.username, subscriber_count: object.user.subscriber_count }
+    user = { username: object.user.username, subscriber_count: object.user.subscriber_count }
   end
 
 end
