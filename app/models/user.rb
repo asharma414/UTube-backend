@@ -11,7 +11,6 @@ class User < ApplicationRecord
     has_many :subscribed_users, foreign_key: :subscribee_id, class_name: 'Subscription'
     has_many :subscribers, through: :subscribed_users
 
-
     def subscriber_count
         self.subscribers.count
     end
@@ -24,6 +23,5 @@ class User < ApplicationRecord
     def liked_feed
         self.likes.where(dislike: false).map {|like| like.video}
     end
-
 
 end

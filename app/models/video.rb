@@ -30,7 +30,7 @@ class Video < ApplicationRecord
     private
 
     def image_type
-        if thumbnail.attached? && !image.content_type.in?(%w(image/jpeg image/png))
+        if thumbnail.attached? && !thumbnail.content_type.in?(%w(image/jpeg image/png))
             errors.add(:thumbnail, 'must be a JPEG or PNG')
         elsif thumbnail.attached? == false
             errors.add(:thumbnail, 'required')

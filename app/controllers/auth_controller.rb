@@ -7,7 +7,7 @@ class AuthController < ApplicationController
       payload = {user_id: user.id}
       token = encode(payload)
       render json: {
-        user_data: user.as_json({:except => [:password_digest]}),
+        user_data: user.as_json({:include => {:subscribees => {:only => [:username, :id]}},:except => [:password_digest]}),
         token: token
       }
     else

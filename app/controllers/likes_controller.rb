@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  before_action :set_like, only: [:show, :update, :destroy]
+  before_action :set_like, only: [:update, :destroy]
 
   # POST /likes
   def create
@@ -15,16 +15,17 @@ class LikesController < ApplicationController
   def liked
     if curr_user
       if Like.find_by(user_id: curr_user.id, video_id: params[:id])
-        like = Like.find_by(user_id: curr_user.id)
-        if like[:dislike] == false
-          render json: {liked: 'liked'}
-        else
-          render json: {liked: 'disliked'}
-        end
+       render json: Like.find_by(user_id: curr_user.id)
       else
-        render json: {liked: nil} 
+        render json: nil
       end
     end
+  end
+
+  def update
+    @like[:dislike] = !@like[:dislike]
+    @like.save
+    render json: @like
   end
 
   # DELETE /likes/1
@@ -35,7 +36,7 @@ class LikesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_like
-      @like = Like.find_by(video_id: params[:id], user_id: curr_user.id)
+      @like = Like.find_by(id: params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

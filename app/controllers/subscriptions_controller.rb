@@ -4,7 +4,7 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions
   def create
     @subscription = Subscription.new(subscription_params)
-    @subscription['subscriber_id'] = current_user.id
+    @subscription['subscriber_id'] = curr_user.id
     if @subscription.save
       render json: @subscription, status: :created, location: @subscription
     else

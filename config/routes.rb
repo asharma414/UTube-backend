@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :likes, only: [:create, :destroy]
+  resources :likes, only: [:create, :update, :destroy]
   resources :subscriptions, only: [:create, :destroy]
   resources :genres
   resources :videos

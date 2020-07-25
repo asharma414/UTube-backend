@@ -5,6 +5,7 @@ class FeedController < ApplicationController
     end
 
     def liked
+        render json: curr_user.liked_feed
     end
 
     def viewed
