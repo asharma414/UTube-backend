@@ -9,6 +9,19 @@ class FeedController < ApplicationController
     end
 
     def viewed
+        render json: curr_user.views.map {|view| view.video}
+    end
+
+    def channel
+        if curr_user
+            if curr_user[:id] == params[:id]
+                render json: curr_user.private_channel
+            else
+                render json: User.find(params[:id]).public_channel
+            end
+        else
+            render json: User.find(params[:id]).public_channel
+        end
     end
 
 end

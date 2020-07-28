@@ -1,7 +1,7 @@
-class VideoSerializer < ActiveModel::Serializer
+class VideoShowSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :title, :description, :public, :user_id, :clip, :thumbnail, :user, :duration, :genre, :like_count, :dislike_count, :view_count
+  attributes :id, :title, :description, :public, :user_id, :clip, :thumbnail, :user, :duration, :genre, :like_count, :dislike_count, :view_count, :comments, :created_at
 
   def clip
     return unless object.clip.attached?
@@ -9,6 +9,10 @@ class VideoSerializer < ActiveModel::Serializer
       .slice('filename', 'byte_size')
       .merge(url: clip_url)
       .tap { |attrs| attrs['name'] = attrs.delete('filename') }
+  end
+
+  def comments
+    object.comments.map {|comment| comment.comment_data}
   end
 
   def clip_url

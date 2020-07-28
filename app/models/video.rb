@@ -15,6 +15,10 @@ class Video < ApplicationRecord
         return self.thumbnail.variant(resize: '250x250!').processed
     end
 
+    def view_count
+        self.views.count
+    end
+
     def like_count
         self.likes.where(dislike: false).count
     end

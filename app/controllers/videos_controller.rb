@@ -3,13 +3,17 @@ class VideosController < ApplicationController
 
   # GET /videos
   def index
-    @videos = Video.where(public: true)
+    if params[:query] && params[:query].length != 0
+      @videos = Video.where('title like ?', "%#{params[:query]}%").or(Video.where('description like ?', "%#{params[:query]}%"))
+    else 
+      @videos = Video.where(public: true)
+    end
     render json: @videos
   end
 
   # GET /videos/1
   def show
-    render json: @video
+    render json: @video, serializer: VideoShowSerializer
   end
 
   # POST /videos

@@ -24,4 +24,12 @@ class User < ApplicationRecord
         self.likes.where(dislike: false).map {|like| like.video}
     end
 
+    def public_channel
+        self.videos.where(public: true)
+    end
+
+    def private_channel
+        self.videos
+    end
+
 end
