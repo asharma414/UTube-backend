@@ -15,7 +15,7 @@ class LikesController < ApplicationController
   def liked
     if curr_user
       if Like.find_by(user_id: curr_user.id, video_id: params[:id])
-       render json: Like.find_by(user_id: curr_user.id)
+       render json: Like.find_by(user_id: curr_user.id, video_id: params[:id])
       else
         render json: nil
       end
