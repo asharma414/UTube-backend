@@ -7,7 +7,7 @@ class AuthController < ApplicationController
       payload = {user_id: user.id}
       token = encode(payload)
       render json: {
-        user_data: user.as_json({:include => {:subscribees => {:only => [:username, :id]}},:except => [:password_digest]}),
+        user_data: user.as_json({:include => :user_subscriptions, :except => [:password_digest]}),
         token: token
       }
     else
@@ -23,7 +23,7 @@ class AuthController < ApplicationController
     token = decode(request.headers["Authentication"])
     user_id = token["user_id"]
     user = User.find(user_id)
-    render json: user
+    render json: user.as_json({:include => :user_subscriptions, :except => [:password_digest]})
   end
 
 end

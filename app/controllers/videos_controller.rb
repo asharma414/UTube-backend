@@ -4,7 +4,8 @@ class VideosController < ApplicationController
   # GET /videos
   def index
     if params[:query] && params[:query].length != 0
-      @videos = Video.where('title like ?', "%#{params[:query]}%").or(Video.where('description like ?', "%#{params[:query]}%"))
+      term = params[:query].downcase
+      @videos = Video.where('LOWER(title) like ?', "%#{term}%").or(Video.where('LOWER(description) like ?', "%#{term}%"))
     else 
       @videos = Video.where(public: true)
     end
