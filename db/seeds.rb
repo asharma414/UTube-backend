@@ -31,9 +31,9 @@ comedy = Genre.create(name: 'Comedy')
 
 abhi = User.create(first_name: 'Abhinav', last_name: 'Sharma', country: 'United States', username: 'asharma414', password: 'test123', dob: "1997-01-27")
 
-vid = Video.new(title: 'test', description: 'test description', user_id: abhi.id, public: true, genre_id: entertainment.id)
+# vid = Video.new(title: 'test', description: 'test description', user_id: abhi.id, public: true, genre_id: entertainment.id)
 
-vid.clip.attach(io: File.open('/Users/abhi/Development/code/Mod5/mod5-project/utube-backend/public/assets/test.mp4'), filename: 'test.mp4')
-vid.thumbnail.attach(io: File.open('/Users/abhi/Development/code/Mod5/mod5-project/utube-backend/public/assets/thumbnail.jpg'), filename: 'thumbnail.jpg')
+# vid.clip.attach(io: File.open('../public/assets/test.mp4'), filename: 'test.mp4')
+# vid.thumbnail.attach(io: File.open('../public/assets/thumbnail.jpg'), filename: 'thumbnail.jpg')
 
-vid.save
+# vid.save
