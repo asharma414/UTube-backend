@@ -22,7 +22,7 @@ science = Genre.create(name: "Science & Technology")
 nonprofit = Genre.create(name: "Nonprofits & Activism")
 comedy = Genre.create(name: 'Comedy')
 
-abhi = User.create(first_name: 'Abhinav', last_name: 'Sharma', country: 'United States', username: 'asharma414', password: 'test123', dob: "1997-01-27", uplooader: true)
+abhi = User.create(first_name: 'Abhinav', last_name: 'Sharma', country: 'United States', username: 'asharma414', password: 'test123', dob: "1997-01-27", uploader: true)
 
 # vid = Video.new(title: 'test', description: 'test description', user_id: abhi.id, public: true, genre_id: entertainment.id)
 
