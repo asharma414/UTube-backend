@@ -11,11 +11,11 @@ class ApplicationController < ActionController::API
 
   #given a token, generate the original payload
   def decode(token)
-     JWT.decode(token, secret_key, true, { algorithm: 'HS256' })[0]
+      JWT.decode(token, secret_key, true, { algorithm: 'HS256' })[0]
   end
 
   def curr_user
-    if decode(request.headers["Authentication"])
+    if request.headers["Authentication"] != "null" && decode(request.headers["Authentication"])
       user_id = decode(request.headers["Authentication"])['user_id']
       User.find(user_id)
     end
