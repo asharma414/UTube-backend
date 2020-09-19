@@ -19,7 +19,7 @@ gem 'puma', '~> 4.1'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
 gem 'mini_magick'
-gem 'fuzzy_match'
+gem 'dotenv-rails'
 gem "google-cloud-storage", require: false
 
 # Reduces boot times through caching; required in config/boot.rb
