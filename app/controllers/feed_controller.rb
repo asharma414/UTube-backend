@@ -13,8 +13,9 @@ class FeedController < ApplicationController
     end
 
     def channel
-        if curr_user
-            if curr_user[:id] == params[:id]
+        if curr_user 
+            if curr_user[:id] == params[:id].to_i
+                puts "test"
                 render json: curr_user.private_channel
             else
                 render json: User.find(params[:id]).public_channel
